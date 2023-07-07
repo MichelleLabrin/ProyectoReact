@@ -1,0 +1,16 @@
+[
+    {
+        "email": "admin@apple.com",
+        "password": "123",
+        "name": "Lucía",
+        "role": "admin",
+        "image": "https://i.pinimg.com/564x/53/af/4e/53af4ef56afb1934c793f2c7cd9dfbfb.jpg"
+    },
+    {
+        "email": "user@apple.com",
+        "password": "1234",
+        "name": "Laura",
+        "role": "User",
+        "image": "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+    }
+]

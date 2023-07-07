@@ -1,0 +1,29 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+    border: 1px solid #dbb330;
+    border-radius: 5px;
+    background-color: #f4eda4;
+
+  }
+  
+  .profile-container img {
+    width: 220px;
+    height: 200px;
+    border-radius: 70%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-container h2 {
+    font-size: 35px;
+    color: #585858;
+  }
+  
+  .profile-container h6 {
+    font-size: 14px;
+    margin-bottom: -20px;
+    color: #585858;
+  }
