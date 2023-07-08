@@ -1,19 +1,21 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
-import Header from './Componentes/Header/Header';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Products from './Componentes/Products/Products';
-import Detail from './Componentes/Detail/Detail';
-import Favorites from './Componentes/Favorites/Favorites';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import "./App.css";
+import Header from "./Componentes/Header/Header";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Products from "./Componentes/Products/Products";
+import Detail from "./Componentes/Detail/Detail";
+import Favorites from "./Componentes/Favorites/Favorites";
+import { DiscountProvider } from "./Componentes/Context/Discount";
 
-import userList from './Data/Users.json';
-import Login from './Componentes/Login/Login';
-import Profile from './Componentes/Profile/Profile';
-import AuthRoute from './Componentes/AuthRoute/AuthRoute';
-
+import userList from "./Data/Users.json";
+import Login from "./Componentes/Login/Login";
+import Profile from "./Componentes/Profile/Profile";
+import AuthRoute from "./Componentes/AuthRoute/AuthRoute";
+import Home from "./Componentes/Home/Home";
 
 function App() {
+
   const [productsList, setProductsList] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
@@ -22,11 +24,12 @@ function App() {
 
   const loginUser = (formData) => {
     const findUser = userList.find(
-      (user) => user.email === formData.email && user.password === formData.password
+      (user) =>
+        user.email === formData.email && user.password === formData.password
     );
     if (findUser) {
       setUser(findUser);
-      navigate('/');
+      navigate("/");
     } else {
       setUser(false);
     }
@@ -45,42 +48,58 @@ function App() {
     setFavorites(deleteFavorites);
   };
 
-   useEffect(() => {
-     axios.get('https://648444a2ee799e3216267233.mockapi.io/AppleProducts')
-       .then((response) => {
-         console.log(response.data);
-         setProductsList(response.data);
-       })
-       }, []);
+  useEffect(() => {
+    axios
+      .get("https://648444a2ee799e3216267233.mockapi.io/AppleProducts")
+      .then((response) => {
+        console.log(response.data);
+        setProductsList(response.data);
+      });
+  }, []);
 
   return (
+    <DiscountProvider>
     <div>
       <Header />
+
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/about" element={<h1>About</h1>} />
         <Route
           path="/Products"
-          element={<Products products={productsList} favorites={addFavorites} />}
+          element={
+            <Products products={productsList} favorites={addFavorites} />
+          }
         />
         <Route
           path="/favorites"
-          element={<Favorites favorites={favorites} removeFavorites={removeFavorites} />}
+          element={
+            <Favorites
+              favorites={favorites}
+              removeFavorites={removeFavorites}
+            />}
+        /> 
+
+        <Route
+          path="/detail/:id"
+          element={<Detail products={productsList} />}
         />
-        <Route path="/detail/:id" element={<Detail products={productsList} />} />
 
         <Route path="/login" element={<Login loginUser={loginUser} />} />
 
         <Route
           path="/profile"
-          element={<AuthRoute user={user} component={<Profile user={user} />} />}
+          element={
+            <AuthRoute user={user} component={<Profile user={user} />} />
+          }
         />
 
         <Route path="/*" element={<h1>Oops Not Found!</h1>} />
+
       </Routes>
     </div>
+    </DiscountProvider>
   );
 }
 
 export default App;
-
