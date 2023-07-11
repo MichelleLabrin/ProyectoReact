@@ -1,17 +1,11 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
-export const DiscountContext = createContext([]);
 
-export const DiscountProvider = ({ children }) => {
-  const [discountState] = useState(['5%', '10%', '15%', '20%']);
+export const DiscountContext = createContext();
 
-  return (
-    <DiscountContext.Provider value={discountState}>
-      {children}
-    </DiscountContext.Provider>
-  );
+export const useInitialDiscountContext = () => {
+    const [state, setState] = useState({
+        discount: ["5%", "10%", "15%", "20%"]});
+
+    return { state, setState };
 };
-
-export default DiscountProvider;
-
-

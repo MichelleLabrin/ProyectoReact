@@ -6,7 +6,8 @@ import axios from "axios";
 import Products from "./Componentes/Products/Products";
 import Detail from "./Componentes/Detail/Detail";
 import Favorites from "./Componentes/Favorites/Favorites";
-import { DiscountProvider } from "./Componentes/Context/Discount";
+
+import { DiscountContext, useInitialDiscountContext } from "./Componentes/Context/Discount";
 
 import userList from "./Data/Users.json";
 import Login from "./Componentes/Login/Login";
@@ -57,9 +58,12 @@ function App() {
       });
   }, []);
 
+  const allDiscountContext = useInitialDiscountContext();
+
   return (
-    <DiscountProvider>
+    
     <div>
+      <DiscountContext.Provider value={allDiscountContext}>
       <Header />
 
       <Routes>
@@ -97,8 +101,9 @@ function App() {
         <Route path="/*" element={<h1>Oops Not Found!</h1>} />
 
       </Routes>
+      </DiscountContext.Provider>
+
     </div>
-    </DiscountProvider>
   );
 }
 

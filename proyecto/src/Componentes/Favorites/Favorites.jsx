@@ -1,12 +1,12 @@
-import './Favorites.css';
-import { useDiscountContext } from "../Context/Discount";
+import React, { useContext, useState } from 'react';
+import { DiscountContext } from "../Context/Discount";
 
 const Favorites = ({ favorites, removeFavorites }) => {
-  const descuentos = useDiscountContext();
+  const context = useContext(DiscountContext);
+  const [selectedDiscount, setSelectedDiscount] = useState('');
 
-  const handleDiscountChange = (e) => {
-    const selectedDiscount = e.target.value;
-    console.log("Descuento seleccionado:", selectedDiscount);
+  const handleDiscountChange = (event) => {
+    setSelectedDiscount(event.target.value);
   };
 
   return (
@@ -22,15 +22,14 @@ const Favorites = ({ favorites, removeFavorites }) => {
           </div>
         ))}
       </div>
-
-      <div>
-        Select a Discount:
-        <select onChange={handleDiscountChange}>
-          {descuentos.map((discount, i) => (
-            <option key={i} value={discount}>{discount}</option>
+      {favorites.length > 0 && (
+        <select value={selectedDiscount} onChange={handleDiscountChange}>
+          <option value="">Selecciona un descuento</option>
+          {context.state.discount.map((discount, index) => (
+            <option key={index} value={discount}>{discount}</option>
           ))}
         </select>
-      </div>
+      )}
     </div>
   );
 };
