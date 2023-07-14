@@ -14,6 +14,7 @@ import Login from "./Componentes/Login/Login";
 import Profile from "./Componentes/Profile/Profile";
 import AuthRoute from "./Componentes/AuthRoute/AuthRoute";
 import Home from "./Componentes/Home/Home";
+import Footer from "./Componentes/Footer/Footer";
 
 function App() {
 
@@ -67,8 +68,9 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<h1>About</h1>} />
+        <Route path="/" element={
+          <Home products={productsList}/>} />
+        
         <Route
           path="/Products"
           element={
@@ -101,6 +103,7 @@ function App() {
         <Route path="/*" element={<h1>Oops Not Found!</h1>} />
 
       </Routes>
+      <Footer />
       </DiscountContext.Provider>
 
     </div>

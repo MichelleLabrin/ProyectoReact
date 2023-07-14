@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { DiscountContext } from "../Context/Discount";
+import './Favorites.css';
 
 const Favorites = ({ favorites, removeFavorites }) => {
   const context = useContext(DiscountContext);
@@ -11,7 +12,7 @@ const Favorites = ({ favorites, removeFavorites }) => {
 
   return (
     <div>
-      <h1 className='h1fav'>Cart!</h1>
+      <h1 className='h1fav'>Your Products</h1>
       <div className="favorites-container">
         {favorites.map((favorite) => (
           <div key={favorite.id} className="favorite-card">

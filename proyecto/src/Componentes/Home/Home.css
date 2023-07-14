@@ -1,7 +1,12 @@
+.Welcome {
+    font-size: 60px;
+    color: #333;
 
-#light {
-    background-color: #f3ebf6;
-}
-#dark {
-    background-color: #46045e;
-}
+  }
+  
+  .LastSale {
+    font-size: 18px;
+    color: #ff0000;
+
+  }
+  
